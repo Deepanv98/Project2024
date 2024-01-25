@@ -1,0 +1,224 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>iSureJobs</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{% static 'fonts/material-icon/css/material-design-iconic-font.min.css' %}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{% static 'css/style1.css' %}">
+    <link rel="icon" href="{% static 'img/icon.png' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" type="text/css">
+   <link rel="stylesheet" href="{% static 'assets/css/jasny-bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap-select.min.css' %}" type="text/css">
+    <!-- Material CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/material-kit.css' %}" type="text/css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="{% static 'assets/fonts/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'assets/fonts/themify-icons.css' %}">
+
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="{% static 'assets/extras/animate.css' %}" type="text/css">
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="{% static 'assets/extras/owl.carousel.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'assets/extras/owl.theme.css' %}" type="text/css">
+    <!-- Rev Slider CSS -->
+    <link rel="stylesheet" href="{% static 'assets/extras/settings.css' %}" type="text/css">
+    <!-- Slicknav js -->
+    <link rel="stylesheet" href="{% static 'assets/css/slicknav.css' %}" type="text/css">
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" type="text/css">
+    <!-- Responsive CSS Styles -->
+    <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}" type="text/css">
+
+    <!-- Color CSS Styles  -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/colors/red.css' %}" media="screen" />
+
+</head>
+<body>
+
+
+<nav class="navbar navbar-default" role="navigation" data-spy="affix" data-offset-top="50">
+              <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand logo" href="{% url 'guest' %}"><img src="{% static 'assets/img/logo.png' %}" alt=""></a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="navbar">
+                <!-- Start Navigation List -->
+                <ul class="nav navbar-nav">
+                  <li>
+                    <a class="active" href="{% url 'guest' %}">
+                    Home
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#">
+                    Candidates <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown">
+                      <li>
+                        <a href="{% url 'login' %}">
+                        Browse Jobs
+                        </a>
+                      </li>
+
+                      <li>
+                        <a href="{% url 'login' %}">
+                        Add Resume
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{% url 'login' %}">
+                        Manage Resumes
+                        </a>
+                      </li>
+
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#">
+                    Employers <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown">
+                      <li>
+                        <a href="{% url 'login' %}">
+                        Add Job
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{% url 'login' %}">
+                        Manage Jobs
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{% url 'login' %}">
+                        Manage Applications
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{% url 'login' %}">
+                        Browse Resumes
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="{% url 'guest' %}">
+                    Register Now <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown">
+                      <li>
+                        <a href="{% url 'candidate_register' %}">
+                        Candidate
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{% url 'employer_register' %}">
+                        Employer
+                        </a>
+                      </li>
+
+                    </ul>
+                  </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right float-right">
+                  <li class="left"><a href="{% url 'emp_login' %}"><i class="ti-pencil-alt"></i> Post A Job</a></li>
+                  <li class="right"><a href="{% url 'login' %}"><i class="ti-lock"></i>  Log In</a></li>
+                </ul>
+              </div>
+            </div>
+</nav>
+
+    <div class="main">
+
+        <!-- Sign up form -->
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Candidate Sign up</h2>
+                        <form method="POST" class="register-form" id="register-form"> {% csrf_token %}
+                            <div class="form-group">
+                                <label for="name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="name" id="name" placeholder="Your Full Name" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="email"><i class="zmdi zmdi-email"></i></label>
+                                <input type="email" name="email" id="email" placeholder="Your Email" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="mobile"><i class="zmdi zmdi-phone"></i></label>
+                                <input type="tel" name="mob" id="mobile" placeholder="Your Mobile Number" pattern="[0-9]*" minlength="10" maxlength="10" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="user"><i class="zmdi zmdi-account"></i></label>
+                                <input type="text" name="user" id="user" placeholder="Your Username" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="pass"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="pass" id="pass" placeholder="Password" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="re-pass"><i class="zmdi zmdi-lock-outline"></i></label>
+                                <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password" required/>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" required/>
+                                <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                            </div>
+                            <div>
+                                {% if messages %}
+                                {% for message in messages %}
+                                <p style="color:red; text-style:bold;">{{ message }}</p>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                        </form>
+                    </div>
+                    <div class="signup-image">
+                        <figure><img src="{% static 'img/signup-image.jpg' %}" alt="Signup up image"></figure>
+                        <a href="{% url 'login' %}" class="signup-image-link">I am already member</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- JS -->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'js/main1.js' %}"></script>
+
+<script type="text/javascript" src="{% static 'assets/js/jquery-min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/material.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/material-kit.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/jquery.parallax.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/jquery.slicknav.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/main.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/jquery.counterup.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/waypoints.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/jasny-bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/bootstrap-select.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/form-validator.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/contact-form-script.js' %}"></script>
+</body>
+</html>

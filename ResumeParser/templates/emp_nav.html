@@ -1,0 +1,193 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>iSureJobs</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon.png' %}">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'assets/css/jasny-bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap-select.min.css' %}" type="text/css">
+    <!-- Material CSS -->
+    <link rel="stylesheet" href="{% static 'assets/css/material-kit.css' %}" type="text/css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="{% static 'assets/fonts/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'assets/fonts/themify-icons.css' %}">
+
+    <!-- Animate CSS -->
+    <link rel="stylesheet" href="{% static 'assets/extras/animate.css' %}" type="text/css">
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="{% static 'assets/extras/owl.carousel.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'assets/extras/owl.theme.css' %}" type="text/css">
+    <!-- Rev Slider CSS -->
+    <link rel="stylesheet" href="{% static 'assets/extras/settings.css' %}" type="text/css">
+    <!-- Slicknav js -->
+    <link rel="stylesheet" href="{% static 'assets/css/slicknav.css' %}" type="text/css">
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" type="text/css">
+    <!-- Responsive CSS Styles -->
+    <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/upload.css' %}" type="text/css">
+
+    <!-- Color CSS Styles  -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/colors/red.css' %}" media="screen" />
+</head>
+<body>
+
+ <!-- Header Section Start -->
+      <div class="header">
+        <!-- Start intro section -->
+        <section id="intro" class="section-intro">
+          <div class="logo-menu">
+                   <nav class="navbar navbar-default" role="navigation" data-spy="affix" data-offset-top="50">
+              <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand logo" href="{% url 'emp_home' %}"><img src="{% static 'assets/img/logo.png' %}" alt=""></a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="navbar">
+                <!-- Start Navigation List -->
+                 <ul class="nav navbar-nav">
+                  <li>
+                    <a class="active" href="{% url 'emp_home' %}">
+                    Home
+                    </a>
+                  </li>
+
+                 <li>
+                    <a href="#">
+                    Employers <i class="fa fa-angle-down"></i>
+                    </a>
+                    <ul class="dropdown">
+                      <li>
+                        <a href="{% url 'job_posting' %}">
+                        Add Job
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{% url 'all_jobs' %}">
+                        Manage Jobs
+                        </a>
+                      </li>
+                      <li>
+                        <a href="{% url 'selected-candidate' %}">
+                        Manage Applications
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right float-right">
+                  <li class="right"><a href="{% url 'log_out' %}"><i class="ti-lock"></i>  Log Out</a></li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+
+          <!-- Off Canvas Navigation -->
+          <div class="navmenu navmenu-default navmenu-fixed-left offcanvas">
+          <!--- Off Canvas Side Menu -->
+            <div class="close" data-toggle="offcanvas" data-target=".navmenu">
+                <i class="ti-close"></i>
+            </div>
+              <h3 class="title-menu">All Pages</h3>
+              <ul class="nav navmenu-nav">
+                <li><a href="{% url 'emp_home' %}">Home</a></li>
+<!--                <li><a href="index-02.html">Home Page 2</a></li>-->
+<!--                <li><a href="index-03.html">Home Page 3</a></li>-->
+<!--                <li><a href="index-04.html">Home Page 4</a></li>-->
+<!--                <li><a href="#footer">About us</a></li>-->
+<!--                <li><a href="job-page.html">Job Page</a></li>-->
+<!--                <li><a href="job-details.html">Job Details</a></li>-->
+<!--                <li><a href="resume.html">Resume Page</a></li>-->
+<!--                <li><a href="privacy-policy.html">Privacy Policy</a></li>-->
+<!--                <li><a href="pricing.html">Pricing Tables</a></li>-->
+                <li><a href="browse-jobs.html">View Jobs</a></li>
+<!--                <li><a href="browse-categories.html">Browse Categories</a></li>-->
+<!--                <li><a href="add-resume.html">Add Resume</a></li>-->
+<!--                <li><a href="manage-resumes.html">Manage Resumes</a></li>-->
+<!--                <li><a href="job-alerts.html">Job Alerts</a></li>-->
+                <li><a href="{% url 'job_posting' %}">Add Job</a></li>
+                <li><a href="manage-jobs.html">Manage Jobs</a></li>
+                <li><a href="{% url 'selected-candidate' %}">View Applications</a></li>
+<!--                <li><a href="browse-resumes.html">Browse Resumes</a></li>-->
+<!--                <li><a href="contact.html">Contact</a></li>-->
+                <li><a href="{% url 'log_out' %}">Logout</a></li>
+
+            </ul><!--- End Menu -->
+          </div> <!--- End Off Canvas Side Menu -->
+          <div class="tbtn wow pulse" id="menu" data-wow-iteration="infinite" data-wow-duration="500ms" data-toggle="offcanvas" data-target=".navmenu">
+            <p><i class="ti-files"></i> All Pages</p>
+          </div>
+      </div>
+      <!-- Header Section End -->
+
+        </section>
+      </div>
+{% block content %}
+
+{% endblock %}
+
+    <!-- Footer Section End -->
+
+    <!-- Go To Top Link -->
+    <a href="#" class="back-to-top">
+      <i class="ti-arrow-up"></i>
+    </a>
+
+    <div id="loading">
+      <div id="loading-center">
+        <div id="loading-center-absolute">
+          <div class="object" id="object_one"></div>
+          <div class="object" id="object_two"></div>
+          <div class="object" id="object_three"></div>
+          <div class="object" id="object_four"></div>
+          <div class="object" id="object_five"></div>
+          <div class="object" id="object_six"></div>
+          <div class="object" id="object_seven"></div>
+          <div class="object" id="object_eight"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main JS  -->
+    <script type="text/javascript" src="{% static 'assets/js/jquery-min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/material.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/material-kit.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/jquery.parallax.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/jquery.slicknav.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/main.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/jquery.counterup.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/waypoints.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/jasny-bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/bootstrap-select.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/form-validator.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'assets/js/contact-form-script.js' %}"></script>
+
+            <script>
+                $("#file-upload").css("opacity", "0");
+
+                $("#file-browser").click(function(e) {
+                e.preventDefault();
+                $("#file-upload").trigger("click");
+                });
+            </script>
+
+{% block script %}
+{% endblock %}
+
+</body>
+</html>

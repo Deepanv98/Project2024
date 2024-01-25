@@ -1,0 +1,217 @@
+{% extends 'nav.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    body{
+  background-color: #fcfcfc;
+}
+
+.row{
+  margin:auto;
+  padding: 30px;
+  width: 80%;
+  display: flex;
+  flex-flow: column;
+  .card{
+    width: 100%;
+    margin-bottom: 5px;
+    display: block;
+    transition: opacity 0.3s;
+  }
+}
+
+
+.card-body{
+  padding: 0.5rem;
+  table{
+    width: 100%;
+    tr{
+      display:flex;
+      td{
+        a.btn{
+          font-size: 0.8rem;
+          padding: 3px;
+        }
+      }
+      td:nth-child(2){
+        text-align:right;
+        justify-content: space-around;
+      }
+    }
+  }
+
+}
+
+.card-title:before{
+  display:inline-block;
+  font-family: 'Font Awesome\ 5 Free';
+  font-weight:900;
+  font-size: 1.1rem;
+  text-align: center;
+  border: 2px solid grey;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+  padding-bottom: 3px;
+  margin-right: 10px;
+}
+
+.notification-invitation {
+  .card-body {
+    .card-title:before {
+      color: #90CAF9;
+      border-color: #90CAF9;
+      content: "\f007";
+    }
+  }
+}
+
+.notification-warning {
+  .card-body {
+    .card-title:before {
+      color: #FFE082;
+      border-color: #FFE082;
+      content: "\f071";
+    }
+  }
+}
+
+.notification-danger {
+  .card-body {
+    .card-title:before {
+      color: #FFAB91;
+      border-color: #FFAB91;
+      content: "\f00d";
+    }
+  }
+}
+
+.notification-reminder {
+  .card-body {
+    .card-title:before {
+      color: #CE93D8;
+      border-color: #CE93D8;
+      content: "\f017";
+    }
+  }
+}
+
+.card.display-none{
+  display: none;
+  transition: opacity 2s;
+}
+
+  </style>
+</head>
+<body>
+
+<div class="row notification-container">
+  <h2 class="text-center">My Notifications</h2>
+<!--  <p class="dismiss text-right"><a id="dismiss-all" href="#">Dimiss All</a></p>-->
+  <br>
+    {% if n %}
+
+{% for i in n %}
+  <div class="card notification-card notification-invitation">
+    <div class="card-body">
+      <table>
+        <tr>
+          <td style="width:70%"><div class="card-title">Greetings from <b>{{ i.emp.company_name }}</b>' group. You have been selected for an Interview!</div></td>
+          <td style="width:30%">
+            <a href="{% url 'view-notify' %}?nid={{ i.id }}" class="btn btn-primary">View</a>
+            <a href="{% url 'delete-notify' %}?did={{ i.id }}" class="btn btn-danger dismiss-notification">Dismiss</a>
+            <div class="item-foot">
+                {% if i.time_difference < 60 %}
+                <span><i class="ti-calendar"></i> Just Now </span>
+                {% elif i.time_difference < 3600 %}
+                <span><i class="ti-calendar"></i> {{ i.minutes_ago }} minutes ago </span>
+                {% elif i.time_difference < 86400 %}
+                <span><i class="ti-calendar"></i> {{ i.hours_ago }} hours ago </span>
+                {% elif i.time_difference < 2592000 %}
+                <span><i class="ti-calendar"></i> {{ i.days_ago }} days ago </span>
+                {% else %}
+                <span><i class="ti-calendar"></i> {{ i.months_ago }} months ago </span>
+                {% endif %}
+            </div>
+            <div class="item-foot">
+              {% if i.read_status == True %}
+              <i class="text-success">read</i>
+              {% else %}
+              <i class="text-primary">not read</i>
+              {% endif %}
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+<!--  <div class="card notification-card notification-warning">-->
+<!--    <div class="card-body">-->
+<!--       <table>-->
+<!--        <tr>-->
+<!--          <td style="width:70%"><div class="card-title">Your expenses for '<b>Groceries</b>' has exceeded its budget</div></td>-->
+<!--          <td style="width:30%">-->
+<!--            <a href="#" class="btn btn-primary">View</a>-->
+<!--            <a href="#" class="btn btn-danger dismiss-notification">Dismiss</a>-->
+<!--          </td>-->
+<!--        </tr>-->
+<!--      </table>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div class="card notification-card notification-danger">-->
+<!--    <div class="card-body">-->
+<!--       <table>-->
+<!--        <tr>-->
+<!--          <td style="width:70%"><div class="card-title">Insufficient budget to create '<b>Clothing</b>' budget category</div></td>-->
+<!--          <td style="width:30%">-->
+<!--            <a href="#" class="btn btn-primary">View</a>-->
+<!--            <a href="#" class="btn btn-danger dismiss-notification">Dismiss</a>-->
+<!--          </td>-->
+<!--        </tr>-->
+<!--      </table>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <div class="card notification-card notification-reminder">-->
+<!--    <div class="card-body">-->
+<!--       <table>-->
+<!--        <tr>-->
+<!--          <td style="width:70%"><div class="card-title">You have <b>2</b> upcoming payment(s) this week</div></td>-->
+<!--          <td style="width:30%">-->
+<!--            <a href="#" class="btn btn-primary">View</a>-->
+<!--            <a href="#" class="btn btn-danger dismiss-notification">Dismiss</a>-->
+<!--          </td>-->
+<!--        </tr>-->
+<!--      </table>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--{{ i.message }}-->
+{% endfor %}
+
+{% endif %}
+
+    {% if messages %}
+    {% for m in messages %}
+    <div class="card notification-card notification-reminder">
+    <div class="card-body">
+    <h3 class="text-muted text-center">{{ m }}</h3>
+    </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+
+</body>
+</html>
+
+
+{% endblock %}

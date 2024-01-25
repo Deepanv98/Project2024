@@ -1,0 +1,555 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <!--====== Title ======-->
+    <title>JobMate | Post Job</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--====== Favicon Icon ======-->
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon.png' %}">
+
+    <!--====== Slick CSS ======-->
+    <link rel="stylesheet" href="{% static 'assets1/css/slick.css' %}">
+
+    <!--====== Summer Note CSS ======-->
+    <link rel="stylesheet" href="{% static 'assets1/css/summernote.css' %}">
+    <link rel="stylesheet" href="{% static 'assets1/css/summernote-bs4.css' %}">
+
+    <!--====== Date Picker CSS ======-->
+    <link rel="stylesheet" href="{% static 'assets1/css/gijgo.min.css' %}">
+
+    <!--====== Flaticon CSS ======-->
+    <link rel="stylesheet" href="{% static 'assets1/css/flaticon.css' %}">
+
+    <!--====== Font Awesome CSS ======-->
+    <link rel="stylesheet" href="{% static 'assets/fonts/font-awesome.min.css' %}">
+
+    <!--====== Nice Select CSS ======-->
+    <link rel="stylesheet" href="{% static 'assets1/css/nice-select.css' %}">
+
+    <!--====== Bootstrap CSS ======-->
+    <link rel="stylesheet" href="{% static 'assets1/css/bootstrap.min.css' %}">
+
+    <!--====== Default CSS ======-->
+    <link rel="stylesheet" href="{% static 'assets1/css/default.css' %}">
+
+    <!--====== Style CSS ======-->
+    <link rel="stylesheet" href="{% static 'assets1/css/style.css' %}">
+
+
+</head>
+
+<body>
+<!--[if IE]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade
+    your browser</a> to improve your experience and security.</p>
+<![endif]-->
+
+<!--====== PRELOADER PART START ======-->
+
+<div class="preloader">
+    <div class="loader">
+        <div class="ytp-spinner">
+            <div class="ytp-spinner-container">
+                <div class="ytp-spinner-rotator">
+                    <div class="ytp-spinner-left">
+                        <div class="ytp-spinner-circle"></div>
+                    </div>
+                    <div class="ytp-spinner-right">
+                        <div class="ytp-spinner-circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--====== PRELOADER PART ENDS ======-->
+
+<!--====== HEADER PART START ======-->
+
+<header class="header-area">
+    <div class="header-navbar">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <a class="navbar-brand logo" href="{% url 'emp_home' %}"><img src="{% static 'assets/img/logo.png' %}"
+                                                                              alt=""></a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                        data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="toggler-icon"></span>
+                    <span class="toggler-icon"></span>
+                    <span class="toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li><a href="{% url 'emp_home' %}">Home</a></li>
+                        <li class="active">
+                            <a href="#">Employers</a>
+                            <ul class="sub-menu">
+                                <li class="active"><a href="{% url 'job_posting' %}">Post Job</a></li>
+                                <li><a href="{% url 'all_jobs' %}">Manage Jobs</a></li>
+                                <li><a href="{% url 'selected-candidate' %}">Manage Applications</a></li>
+                            </ul>
+                        </li>
+                        <ul class="nav navbar-nav navbar-right float-right">
+                            <li class="right"><a href="{% url 'log_out' %}"><i class="ti-lock"></i> Log Out</a></li>
+                        </ul>
+                    </ul> <!-- navbar nav -->
+                </div>
+            </nav>
+        </div> <!-- container -->
+    </div> <!-- header navbar -->
+
+    <div class="page_banner bg_cover" style="background-image: url(assets/images/page_banner.jpg)">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="banner_content d-sm-flex align-items-center justify-content-between">
+                        <div class="content">
+                            <h3 class="page_title">Post Job</h3>
+                            <p>More than 6 million jobseekers turn to Fitcareer in their search for work, making over
+                                150,000 applications every day.</p>
+                        </div> <!-- content -->
+                        <div class="banner_btn">
+                            <a class="main-btn " href="#">75K JOBS</a>
+                        </div> <!-- banner btn -->
+                    </div> <!-- banner content -->
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </div> <!-- page banner -->
+</header>
+
+<!--====== HEADER PART ENDS ======-->
+
+
+{% if j %}
+
+
+<!--====== JobMate PART START ======-->
+
+<section class="post_job_area pt-80 pb-80">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 col-lg-10">
+                <div class="post_job_form">
+                    <form method="post"> {% csrf_token %}
+                        <h4 class="post_job_title">Basic information</h4> <br>
+
+                        <div class="single_post_job">
+                            <label>Job Title</label>
+                            <!--                                <input type="text" name="job_title" class="form-control" placeholder="Write job title" required>-->
+                            <input type="text" name="job_title" class="form-control" id="myInput"
+                                   value="{{ j.job_title }}">
+                        </div>
+                        <br>
+                        <!-- single resume -->
+
+                        <div class="single_post_job">
+                            <label>Job Type</label>
+                            <select class="form-control" name="job_type" required>
+                                <option>Full Time</option>
+                                <option>Part Time</option>
+                            </select>
+                        </div>
+                        <br><br><br> <!-- single resume -->
+
+                        <div class="single_post_job">
+                            <label>Location</label>
+                            <input type="text" name="location" class="form-control" value="{{ j.job_location }}"
+                                   required>
+                        </div>
+                        <br> <!-- single resume -->
+
+                        <div class="single_post_job">
+                            <label class="styled-select">Category</label>
+                            <select class="form-control" name="category" required>
+                                <option>All Categories</option>
+                                <option>Finance</option>
+                                <option>IT & Engineering</option>
+                                <option>Education/Training</option>
+                                <option>Art/Design</option>
+                                <option>Sale/Markting</option>
+                                <option>Healthcare</option>
+                                <option>Science</option>
+                                <option>Food Services</option>
+                            </select>
+                        </div>
+                        <br><br><br> <!-- single resume -->
+
+                        <div class="single_post_job">
+                            <label>Job Skills</label>
+                            <textarea id="skills" class="form-control" name="job_skills" rows="5" required></textarea>
+                            <p>Comma separate tags, such as required skills or technologies, for this job.</p>
+                        </div>
+                        <br> <!-- single resume -->
+
+                        <div class="single_post_job">
+                            <label>Description</label>
+                            <textarea id="desc" class="form-control" name="desc" rows="5" required></textarea>
+                        </div>
+                        <br> <!-- single resume -->
+
+                        <div class="single_post_job">
+                            <label>Responsibilities</label>
+                            <textarea class="form-control" name="resp" id="resp" rows="5" required></textarea>
+                        </div>
+                        <br> <!-- single resume -->
+
+                        <div class="single_post_job">
+                            <label>Educational Qualification</label>
+                            <input class="form-control" name="qua" type="text" value="{{ j.job_qualification }}"
+                                   required>
+                        </div>
+                        <br> <!-- single resume -->
+
+                        <div class="single_post_job">
+                            <label>Graduation Year</label>
+                            <input class="form-control" name="year" type="text" value="{{ j.job_graduation_year }}"
+                                   required>
+                        </div>
+                        <br> <!-- single resume -->
+
+                        <div class="single_post_job">
+                            <label>CGPA</label>
+                            <input class="form-control" name="cgpa" type="text" value="{{ j.job_CGPA }}" required>
+                        </div>
+                        <br> <!-- single resume -->
+
+                        <div class="single_post_job">
+                            <label>Experience</label>
+                            <input class="form-control" name="exp" type="number" value="{{ j.job_exp }}" required>
+                        </div>
+                        <br> <!-- single resume -->
+
+                        <div class="single_post_job">
+                            <label>Salary</label>
+                            <input class="form-control" name="salary" type="text" value="{{ j.job_salary }}" required>
+                        </div>
+                        <br> <!-- single resume -->
+
+                        <div class="single_post_job">
+                            <label>Languages</label>
+                            <select class="form-control" name="lang" required>
+                                <option>English</option>
+                                <option>Malayalam</option>
+                                <option>Hindi</option>
+                                <option>Tamil</option>
+                            </select>
+                        </div>
+                        <br><br><br> <!-- single resume -->
+
+                        <div class="single_post_job">
+                            <label>Last Date</label>
+                            <input class="form-control" name="last_date" id="datepicker" type="text"
+                                   value="{{ j.y }}-{{ j.m }}-{{ j.d }}" required>
+                        </div>
+                        <br> <!-- single resume -->
+
+
+                        <div class="single_post_job">
+                            <button type="submit" class="main-btn" onclick="alert('Job Posted!')">Submit your job
+                            </button>
+                        </div>
+                        <br> <!-- single resume -->
+
+                    </form>
+                </div> <!-- JobMate form -->
+            </div>
+        </div> <!-- row -->
+    </div> <!-- container -->
+</section>
+
+<!--====== JobMate PART ENDS ======-->
+
+
+{% else %}
+<!--====== JobMate PART START ======-->
+
+<section class="post_job_area pt-80 pb-80">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 col-lg-10">
+                <div class="post_job_form">
+                    <form method="post"> {% csrf_token %}
+                        <h4 class="post_job_title">Basic information</h4> <br>
+
+                        <div class="single_post_job">
+                            <label>Job Title</label>
+                            <!--                                <input type="text" name="job_title" class="form-control" placeholder="Write job title" required>-->
+                            <input type="text" name="job_title" class="form-control" id="myInput"
+                                   placeholder="Write job title">
+                        </div>
+                        <br>
+                        <!-- single resume -->
+
+                        <div class="single_post_job">
+                            <label>Job Type</label>
+                            <select class="form-control" name="job_type" required>
+                                <option>Full Time</option>
+                                <option>Part Time</option>
+                            </select>
+                        </div>
+                        <br><br><br> <!-- single resume -->
+
+                        <div class="single_post_job">
+                            <label>Location</label>
+                            <input type="text" name="location" class="form-control" placeholder="e.g.Palarivattom"
+                                   required>
+                        </div>
+                        <br> <!-- single resume -->
+
+                        <div class="single_post_job">
+                            <label class="styled-select">Category</label>
+                            <select class="form-control" name="category" required>
+                                <option>All Categories</option>
+                                <option>Finance</option>
+                                <option>IT & Engineering</option>
+                                <option>Education/Training</option>
+                                <option>Art/Design</option>
+                                <option>Sale/Markting</option>
+                                <option>Healthcare</option>
+                                <option>Science</option>
+                                <option>Food Services</option>
+                            </select>
+                        </div>
+                        <br><br><br> <!-- single resume -->
+
+                        <div class="single_post_job">
+                            <label>Job Skills</label>
+                            <textarea class="form-control" name="job_skills" placeholder="e.g.PHP,Python,Management"
+                                      rows="5" required></textarea>
+                            <p>Comma separate tags, such as required skills or technologies, for this job.</p>
+                        </div>
+                        <br> <!-- single resume -->
+
+                        <div class="single_post_job">
+                            <label>Description</label>
+                            <textarea class="form-control" name="desc" id="summernote" rows="5" required></textarea>
+                        </div>
+                        <br> <!-- single resume -->
+
+                        <div class="single_post_job">
+                            <label>Qualifications</label>
+                            <textarea class="form-control" name="resp" id="summernote" rows="5" required></textarea>
+                        </div>
+                        <br> <!-- single resume -->
+
+                        <div class="single_post_job">
+                            <label>Educational Qualification</label>
+                            <input class="form-control" name="qua" type="text"
+                                   placeholder="Enter qualification required" required>
+                        </div>
+                        <br> <!-- single resume -->
+
+                        <div class="single_post_job">
+                            <label>Graduation Year</label>
+                            <input class="form-control" name="year" type="text" placeholder="Enter graduation year"
+                                   required>
+                        </div>
+                        <br> <!-- single resume -->
+
+                        <div class="single_post_job">
+                            <label>CGPA</label>
+                            <input class="form-control" name="cgpa" type="text"
+                                   placeholder="Enter CGPA/Percentage required" required>
+                        </div>
+                        <br> <!-- single resume -->
+
+                        <div class="single_post_job">
+                            <label>Experience</label>
+                            <input class="form-control" name="exp" type="number"
+                                   placeholder="Enter no. of years experience" required>
+                        </div>
+                        <br> <!-- single resume -->
+
+                        <div class="single_post_job">
+                            <label>Salary</label>
+                            <input class="form-control" name="salary" type="text" placeholder="Enter salary" required>
+                        </div>
+                        <br> <!-- single resume -->
+
+                        <div class="single_post_job">
+                            <label>Languages</label>
+                            <select class="form-control" name="lang" required>
+                                <option>English</option>
+                                <option>Malayalam</option>
+                                <option>Hindi</option>
+                                <option>Tamil</option>
+                            </select>
+                        </div>
+                        <br><br><br> <!-- single resume -->
+
+                        <div class="single_post_job">
+                            <label>Last Date</label>
+                            <input class="form-control" name="last_date" id="datepicker" type="text"
+                                   placeholder="yyyy-mm-dd" required>
+                        </div>
+                        <br> <!-- single resume -->
+
+
+                        <div class="single_post_job">
+                            <button type="submit" class="main-btn" onclick="alert('Job Posted!')">Submit your job
+                            </button>
+                        </div>
+                        <br> <!-- single resume -->
+
+                    </form>
+                </div> <!-- JobMate form -->
+            </div>
+        </div> <!-- row -->
+    </div> <!-- container -->
+</section>
+
+<!--====== JobMate PART ENDS ======-->
+{% endif %}
+<!--====== PART START ======-->
+
+<!--
+<section class="">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-">
+
+            </div>
+        </div>
+    </div>
+</section>
+-->
+
+<!--====== PART ENDS ======-->
+
+<!--====== FOOTER PART START ======-->
+
+<footer class="footer_area gray-bg">
+    <div class="footer_widget pt-30 pb-80">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-sm-6">
+                    <div class="footer_link mt-45">
+                        <div class="footer_title">
+                            <h5 class="title">Quick Links</h5>
+                        </div>
+                        <ul class="link">
+                            <li><a href="{% url 'job_posting' %}">Post New Job</a></li>
+                            <li><a href="{% url 'all_jobs' %}">Jobs Listing</a></li>
+                            <li><a href="#">View Applications</a></li>
+                        </ul>
+                    </div> <!-- footer link -->
+                </div>
+
+                <div class="col-lg-3 col-sm-6">
+                    <div class="footer_link mt-45">
+                        <div class="footer_title">
+                            <h5 class="title">For Employer</h5>
+                        </div>
+                        <ul class="link">
+                            <li><a href="{% url 'job_posting' %}">Post New Job</a></li>
+                            <li><a href="#">Jobs Listing</a></li>
+                            <li><a href="#">View Applications</a></li>
+                            <li><a href="{% url 'log_out' %}">Log Out</a></li>
+                        </ul>
+                    </div> <!-- footer link -->
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </div> <!-- footer widget -->
+
+    <div class="footer_copyright">
+        <div class="container">
+            <div class="copyright_content text-center d-sm-flex justify-content-between align-items-center">
+                <a class="navbar-brand logo" href="{% url 'emp_home' %}"><img src="{% static 'assets/img/logo.png' %}"
+                                                                              alt=""></a>
+                <p class="copyright">iSureJobs © 2024 All Right Reserved</p>
+            </div> <!-- copyright content -->
+        </div> <!-- container -->
+    </div> <!-- footer copyright -->
+</footer>
+
+<!--====== FOOTER PART ENDS ======-->
+
+<!--====== BACK TOP TOP PART START ======-->
+
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+<!--====== BACK TOP TOP PART ENDS ======-->
+
+<!--====== OVERLAY PART START ======-->
+
+<div class="overlay"></div>
+
+<!--====== OVERLAY PART ENDS ======-->
+
+<!--====== PART START ======-->
+
+<!--
+<section class="">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-">
+
+            </div>
+        </div>
+    </div>
+</section>
+-->
+
+<!--====== PART ENDS ======-->
+
+<!-- row -->
+
+
+<!--====== Jquery js ======-->
+<script src="{% static 'assets1/js/vendor/jquery-1.12.4.min.js' %}"></script>
+<script src="{% static 'assets1/js/vendor/modernizr-3.7.1.min.js' %}"></script>
+
+<!--====== Bootstrap js ======-->
+<script src="{% static 'assets1/js/popper.min.js' %}"></script>
+<script src="{% static 'assets1/js/bootstrap.min.js' %}"></script>
+
+<!--====== Slick js ======-->
+<script src="{% static 'assets1/js/slick.min.js' %}"></script>
+
+<!--====== Nice Select js ======-->
+<script src="{% static 'assets1/js/jquery.nice-select.min.js' %}"></script>
+
+<!--====== Counter Up js ======-->
+<script src="{% static 'assets1/js/waypoints.min.js' %}"></script>
+<script src="{% static 'assets1/js/jquery.counterup.js' %}"></script>
+
+<!--====== Summer Note js ======-->
+<script src="{% static 'assets1/js/summernote.min.js' %}"></script>
+<script src="{% static 'assets1/js/summernote-bs4.min.js' %}"></script>
+
+<!--====== Date Picker js ======-->
+<script src="{% static 'assets1/js/gijgo.min.js' %}"></script>
+
+<!--====== Main js ======-->
+<script src="{% static 'assets1/js/main.js' %}"></script>
+{% if j %}
+<script>
+    // Get the textarea element
+    var skills = document.getElementById('skills');
+    var desc = document.getElementById('desc');
+    var resp = document.getElementById('resp');
+
+    // Set the value dynamically
+    skills.value = "{{ j.job_skills }}";
+    desc.value = '{{ j.job_description }}';
+    resp.value = '{{ j.job_responsibility }}';
+
+</script>
+{% endif %}
+
+</body>
+
+</html>

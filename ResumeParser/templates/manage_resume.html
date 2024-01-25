@@ -1,0 +1,40 @@
+{% extends 'nav.html' %}
+{% block content %}
+{% load static %}
+
+<br><br><br><br><br><br>
+<div class="container-fluid text-center">
+  <div class="row">
+    {% if r == 0 %}
+    <div class="col-md-4">
+        <a href="{{ resume.resume.url }}" target="_blank" class="btn btn-warning btn-lg">View Resume</a>
+    </div>
+    {% else %}
+    <div class="col-md-4">
+      <a href="{% url 'resume-upload' %}" class="btn btn-warning btn-lg">Add Resume</a>
+    </div>
+    {% endif %}
+    <div class="col-md-4">
+        <a href="{% url 'resume-upload' %}" class="btn btn-primary btn-lg">Update Resume</a>
+    </div>
+    {% if r == 0 %}
+    <div class="col-md-4">
+      <a href="{{ resume.resume.url }}" class="btn btn-danger btn-lg" download="resume.pdf">Download Resume</a>
+    </div>
+    {% else %}
+    <div class="col-md-4">
+      <a href="#" class="btn btn-danger btn-lg"  onclick="alert('File Unavailable')">Download Resume</a>
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+{% endblock %}
+
+{% block script %}
+
+
+
+{% endblock %}

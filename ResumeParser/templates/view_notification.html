@@ -1,0 +1,70 @@
+{% extends 'nav.html' %}
+{% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+     <style>
+    /* Custom CSS for box dimensions */
+    .custom-box {
+      width: 500px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #000080; /* Optional background color */
+      /* You can add more styling as needed */
+    }
+     ul {
+      list-style-type: circle; /* Change the bullet style (e.g., circle, square, disc) */
+      /* Other styling properties */
+    }
+    /* Styling for list items */
+    li {
+      margin-bottom: 5px; /* Adjust spacing between list items */
+    }
+  </style>
+</head>
+<body class="bg-red-100">
+  <div class="container">
+<!--    <center><img class="my-6 w-16" style="border-radius: 50%;" src="{{ e.logo.url }}" alt="logo" width="100" height="100" /></center>-->
+      <br>
+    <div class="space-y-4 mb-6">
+        <center>
+        <div class="container">
+    <div class="row">
+      <div class="col-12 d-flex justify-content-center align-items-center">
+        <div class="custom-box">
+                <h1 class="text-center" style="color:white;">Interview Confirmed</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+            </center>
+
+    </div>
+    <div class="card rounded-3xl px-4 py-8 p-lg-10 mb-6" style="padding-left:30px;padding-right:30px;"><br>
+        <h4>Hi {{ c.first_name }},</h4><br>
+      <p><b>Congratulations!</b> We are pleased to inform you that you have been selected for an interview for the <b>{{ j.job_title }}</b>
+          position at <b>{{ e.company_name }}</b>. Your application stood out among many, and we would like to invite you for an interview
+          to discuss your qualifications further.</p><br>
+        <h5 style="margin-bottom: 5px;">Interview Details:</h5>
+        <ul style=" list-style-type:disc;">
+            <li><b>Date: {{ j.last_date.day }}/{{ j.last_date.month }}/{{ j.last_date.year }}</b></li>
+            <li><b>Time: 10.00 AM</b></li>
+            <li><b>Location: {{ j.job_location }}</b></li>
+        </ul>
+        <br>
+        <p>We look forward to meeting you and discussing this exciting opportunity!</p>
+      <hr class="my-6">
+      <p>Best regards,</p>
+        <b>Team {{ e.company_name }}</b>
+    </div>
+  </div>
+</body>
+</html>
+
+{% endblock %}

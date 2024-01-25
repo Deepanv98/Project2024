@@ -1,0 +1,298 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>iSureJobs</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon.png' %}">
+
+    <!-- Google Web Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Inter:wght@700;800&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+<div class="container-xxl bg-white p-0">
+    <!-- Spinner Start -->
+    <!--        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">-->
+    <!--            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">-->
+    <!--                <span class="sr-only">Loading...</span>-->
+    <!--            </div>-->
+    <!--        </div>-->
+    <!-- Spinner End -->
+
+
+    <!-- Header End -->
+    <div class="container-xxl py-5 bg-dark page-header mb-5">
+        <div class="container my-5 pt-5 pb-4">
+            <h1 class="display-3 text-white mb-3 animated slideInDown">Job Detail</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb text-uppercase">
+                    <li class="breadcrumb-item"><a
+                            href="{% if request.user.user_type == '2' %} {% url 'home' %} {% else %} {% url 'emp_home' %} {% endif %}">Home</a>
+                    </li>
+                    <li class="breadcrumb-item text-white active" aria-current="page">Job Detail</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Header End -->
+
+    <!-- Job Detail Start -->
+    <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="row gy-5 gx-4">
+                <div class="col-lg-8">
+                    <div class="d-flex align-items-center mb-5">
+<!--                        <img class="flex-shrink-0 img-fluid border rounded" src="{{ com.logo.url }}" alt=""-->
+<!--                             style="width: 80px; height: 80px;">-->
+                        <div class="text-start ps-4">
+                            <h3 class="mb-3">{{ job.job_title|title }}</h3>{{job.company_name_id.logo}}
+                            <span class="text-truncate me-3"><i class="fa fa-map-marker-alt text-primary me-2"></i>{{ job.job_location|title }}</span>
+                            <span class="text-truncate me-3"><i class="far fa-clock text-primary me-2"></i>{{ job.job_nature }}</span>
+                            <span class="text-truncate me-0"><i class="far fa-money-bill-alt text-primary me-2"></i>{{ job.job_salary }}/-</span>
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <h4 class="mb-3">Job Description</h4>
+                        <p>We are seeking a {{ job.job_title|title }} with {{ job.job_exp }} years of experience to play
+                            a key role in
+                            developing and maintaining our applications. The ideal candidate should have a
+                            strong foundation in {{ job.job_skills }} </p>
+                        <p style="text-align: justify;">{{ job.job_description }}</p>
+                        <h4 class="mb-3">Responsibility</h4>
+                        <p style="text-align: justify;">{{ job.job_responsibility }}</p>
+                        <!--                            <ul class="list-unstyled">-->
+                        <!--                                <li><i class="fa fa-angle-right text-primary me-2"></i>Dolor justo tempor duo ipsum accusam</li>-->
+                        <!--                                <li><i class="fa fa-angle-right text-primary me-2"></i>Elitr stet dolor vero clita labore gubergren</li>-->
+                        <!--                                <li><i class="fa fa-angle-right text-primary me-2"></i>Rebum vero dolores dolores elitr</li>-->
+                        <!--                                <li><i class="fa fa-angle-right text-primary me-2"></i>Est voluptua et sanctus at sanctus erat</li>-->
+                        <!--                                <li><i class="fa fa-angle-right text-primary me-2"></i>Diam diam stet erat no est est</li>-->
+                        <!--                            </ul>-->
+                        <h4>Skills</h4>
+                        <p style="text-align: justify;">{{ job.job_skills }}</p>
+                        <h4 class="mb-3">Qualifications</h4>
+                        <p style="text-align: justify;">{{ job.job_qualification }} with {{ job.job_CGPA }} CGPA.</p>
+                        <!--                            <ul class="list-unstyled">-->
+                        <!--                                <li><i class="fa fa-angle-right text-primary me-2"></i>Dolor justo tempor duo ipsum accusam</li>-->
+                        <!--                                <li><i class="fa fa-angle-right text-primary me-2"></i>Elitr stet dolor vero clita labore gubergren</li>-->
+                        <!--                                <li><i class="fa fa-angle-right text-primary me-2"></i>Rebum vero dolores dolores elitr</li>-->
+                        <!--                                <li><i class="fa fa-angle-right text-primary me-2"></i>Est voluptua et sanctus at sanctus erat</li>-->
+                        <!--                                <li><i class="fa fa-angle-right text-primary me-2"></i>Diam diam stet erat no est est</li>-->
+                        <!--                            </ul>-->
+                    </div>
+
+                    <div class="">
+                        <!--                            <h4 class="mb-4">Apply For The Job</h4>-->
+                        <form method="post"> {% csrf_token %}
+                            <div class="row g-3">
+                                <!--                                    <div class="col-12 col-sm-6">-->
+                                <!--                                        <input type="text" class="form-control" placeholder="Your Name">-->
+                                <!--                                    </div>-->
+                                <!--                                    <div class="col-12 col-sm-6">-->
+                                <!--                                        <input type="email" class="form-control" placeholder="Your Email">-->
+                                <!--                                    </div>-->
+                                <!--                                    <div class="col-12 col-sm-6">-->
+                                <!--                                        <input type="text" class="form-control" placeholder="Portfolio Website">-->
+                                <!--                                    </div>-->
+                                <!--                                    <div class="col-12 col-sm-6">-->
+                                <input type="hidden" name="apply" value="1">
+                                <!--                                    </div>-->
+                                <!--                                    <div class="col-12">-->
+                                <!--                                        <textarea class="form-control" rows="5" placeholder="Coverletter"></textarea>-->
+                                <!--                                    </div>-->
+                                {% if m == 1 %}
+                                <div>
+                                    <button class="btn btn-primary w-100" type="button" disabled>Applied</button>
+                                </div>
+                                {% elif m == 0 %}
+                                <div class="col-12">
+                                    <button id="alertButton" class="btn btn-primary w-100" type="submit"
+                                            onclick="checkCondition()">Apply Now
+                                    </button>
+                                </div>
+                                {% else %}
+                                <div>
+                                    <a href="{% url 'job_posting' %}?jid={{ job.id }}" class="btn btn-primary w-100">Edit</a>
+                                </div>
+                                <!--                                    <div>-->
+                                <!--                                    </div>-->
+                                {% endif %}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="bg-light rounded p-5 mb-4 wow slideInUp" data-wow-delay="0.1s">
+                        <h4 class="mb-4">Job Summery</h4>
+                        <p><i class="fa fa-angle-right text-primary me-2"></i>Published On: {{ job.published_date }}</p>
+                        <p><i class="fa fa-angle-right text-primary me-2"></i>Job Category: {{ job.category }}</p>
+                        <p><i class="fa fa-angle-right text-primary me-2"></i>Job Nature: {{ job.job_nature }}</p>
+                        <p><i class="fa fa-angle-right text-primary me-2"></i>Graduation Year: {{ job.job_graduation_year }}</p>
+                        <p><i class="fa fa-angle-right text-primary me-2"></i>Salary: {{ job.job_salary }}/-</p>
+                        <p><i class="fa fa-angle-right text-primary me-2"></i>Languages Known: {{ job.job_languages }}
+                        </p>
+                        <p><i class="fa fa-angle-right text-primary me-2"></i>Location: {{ job.job_location|title }}</p>
+                        <p class="m-0"><i class="fa fa-angle-right text-primary me-2"></i>Last Date: {{ job.last_date }}
+                        </p>
+                    </div>
+                    <div class="bg-light rounded p-5 wow slideInUp" data-wow-delay="0.1s">
+                        <h4 class="mb-4">Company Details</h4>
+                        <b style="font-style:bold;">Company Name: {{ com.company_name }}</b>
+                        <br><br>
+                        <p class="m-0" style="text-align: justify;">{{ com.desc }}</p>
+                        <p>Contact Us: {{ com.mobile }} </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Job Detail End -->
+
+
+    <!-- Footer Start -->
+    <!-- Footer Section Start -->
+    <footer>
+        <!-- Footer Area Start -->
+        <section class="footer-Content">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="widget">
+                            <h3 class="block-title"><img src="{% static 'assets/img/logo.png' %}" class="img-responsive"
+                                                         alt="Footer Logo"></h3>
+                            <div class="textwidget">
+                                <!--                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque lobortis tincidunt est, et euismod purus suscipit quis. Etiam euismod ornare elementum. Sed ex est, consectetur eget facilisis sed.</p>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="widget">
+                            <h3 class="block-title">Quick Links</h3>
+                            <ul class="menu">
+                                <li><a href="{% url 'home' %}">Home</a></li>
+                                <li><a href="{% url 'browse-jobs' %}">All Jobs</a></li>
+                                <li><a href="{% url 'log_out' %}">Logout</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="widget">
+                            <h3 class="block-title">Trending Jobs</h3>
+                            <ul class="menu">
+                                <li><a href="#">Android Developer</a></li>
+                                <li><a href="#">Senior Accountant</a></li>
+                                <li><a href="#">Frontend Developer</a></li>
+                                <li><a href="#">Python Developer</a></li>
+                                <li><a href="#">Project Manager</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- Footer area End -->
+
+        <!-- Copyright Start  -->
+        <div id="copyright">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="site-info text-center">
+                            <p>All Rights reserved &copy; 2023 - Designed & Developed by <b>iSureJobs</b></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Copyright End -->
+
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Go To Top Link -->
+    <a href="#" class="back-to-top">
+        <i class="ti-arrow-up"></i>
+    </a>
+
+    <div id="loading">
+        <div id="loading-center">
+            <div id="loading-center-absolute">
+                <div class="object" id="object_one"></div>
+                <div class="object" id="object_two"></div>
+                <div class="object" id="object_three"></div>
+                <div class="object" id="object_four"></div>
+                <div class="object" id="object_five"></div>
+                <div class="object" id="object_six"></div>
+                <div class="object" id="object_seven"></div>
+                <div class="object" id="object_eight"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+</div>
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="{% static 'lib/wow/wow.min.js' %}"></script>
+<script src="{% static 'lib/easing/easing.min.js' %}"></script>
+<script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+<script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+
+<!-- Template Javascript -->
+<script src="{% static 'js/main.js' %}"></script>
+
+{% if messages %}
+<script>
+            // Function to display alert for each message
+            function displayMessages() {
+                {% for message in messages %}
+                    alert("{{ message }}");
+                {% endfor %}
+            }
+
+            // Call the function when a button is clicked
+            document.addEventListener('DOMContentLoaded', function() {
+                document.getElementById('alertButton').addEventListener('click', displayMessages);
+            });
+
+</script>
+{% else %}
+<script>
+            function displayMessages() {
+            alert("Job Applied!"}
+            }
+
+</script>
+{% endif %}
+</body>
+
+</html>
